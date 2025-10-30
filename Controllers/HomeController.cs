@@ -28,5 +28,26 @@ namespace InTheBag.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult IndexViewBag()
+        {
+            ViewBag.Title = "Index (ViewBag)";
+            ViewBag.Message = "Hello from ViewBag";
+            ViewBag.Count = 3;
+            return View();
+        }
+        public IActionResult IndexViewData()
+        {
+            ViewData["Title"] = "Index (ViewData)";
+            ViewData["Message"] = "Hello from ViewData";
+            ViewData["Count"] = 5;
+            return View();
+        }
+        public IActionResult IndexTempData()
+        {
+            TempData["Title"] = "Index (TempData)";
+            TempData["Message"] = "Hello from TempData";
+            TempData["Count"] = 7;
+            return View();
+        }
     }
 }

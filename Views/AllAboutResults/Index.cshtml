@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "It's All About the Results of your Actions";
+}
+<img src="~/Images/weekend.jpg" style="position:absolute;top:0;left:0;width:100%;z-index:-1;" />
+
+<div style="background:white;opacity:.8;padding:30px;border:10px inset dodgerblue;width:30%;position:absolute;left:0;">
+    <h2 style="text-align:center;-webkit-text-stroke:2px black;-webkit-text-fill-color:dodgerblue;">Welcome to the Weekend</h2>
+    <h3>@ViewBag.Greeting</h3>
+    <h3>@ViewData["dayMessage"].ToString()</h3>
+</div>
