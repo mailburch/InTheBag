@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Genie Perks";
+    var posted = (bool)(ViewBag.Posted ?? false);
+}
+<div class="row">
+    <div class="col-md-6">
+        <h2>Choose Your Perks</h2>
+        <form method="post">
+            <div class="form-group">
+                <label class="col-form-label">Type of Housing:</label>
+                <select name="perk" class="form-control">
+                    <option>Bottle</option>
+                    <option>Townhouse</option>
+                    <option>Condo</option>
+                    <option>RV</option>
+                    <option>Home</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Transportation:</label>
+                <select name="perk" class="form-control">
+                    <option>Flying Carpet</option>
+                    <option>Convertible</option>
+                    <option>SUV</option>
+                    <option>Bicycle</option>
+                    <option>Motorcycle</option>
+                    <option>NA - I can blink and transport</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Amenities (CTRL+Click for more than 1):</label>
+                <select name="perk" class="form-control" multiple>
+                    <option>Pool or Lake</option>
+                    <option>Gym</option>
+                    <option>Cook</option>
+                    <option>Cleaning Staff</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        @if (posted)
+        {
+            <h2>You selected the following perks</h2>
+            <ul>
+                @foreach (var p in (IList<string>)ViewBag.Perks)
+                {
+                    <li>@p</li>
+                }
+            </ul>
+        }
+    </div>
+</div>

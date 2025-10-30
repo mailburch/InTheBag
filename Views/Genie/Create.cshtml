@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Our Famous Genies";
+}
+<section class="row">
+    <div class="col-md-6">
+        <h2>Genie Application Form</h2>
+        <form method="post">
+            <div class="form-group">
+                <label class="col-form-label">Name:</label>
+                <input name="GenieName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Age:</label>
+                <input type="number" name="Age" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">#Wishes Granted:</label>
+                <input type="number" name="WishesGranted" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <img src="~/Images/Genie.png" alt="Genie" class="rounded shadow" />
+    </div>
+</section>

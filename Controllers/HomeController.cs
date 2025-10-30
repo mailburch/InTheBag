@@ -59,7 +59,6 @@ namespace InTheBag.Controllers
         // ===== NEW: Session State Example =====
         public IActionResult IndexSession()
         {
-            // Try to get number; if missing, start from 0
             int? num = HttpContext.Session.GetInt32("num") ?? 0;
             num++;
             HttpContext.Session.SetInt32("num", (int)num);
@@ -71,7 +70,6 @@ namespace InTheBag.Controllers
         // ===== NEW: WishIndex (reads serialized object) =====
         public IActionResult WishIndex()
         {
-            // Try to get serialized wishes
             string? json = HttpContext.Session.GetString("myWishes");
 
             Wishes wishes;
@@ -81,7 +79,6 @@ namespace InTheBag.Controllers
             }
             else
             {
-                // Default wishes
                 wishes = new Wishes
                 {
                     wish1 = "Travel the world",
@@ -89,7 +86,6 @@ namespace InTheBag.Controllers
                     wish3 = "Learn to play piano"
                 };
 
-                // Save defaults to session
                 string saveJson = JsonSerializer.Serialize(wishes);
                 HttpContext.Session.SetString("myWishes", saveJson);
             }
@@ -104,17 +100,24 @@ namespace InTheBag.Controllers
             return View();
         }
 
+        // CHAPTER 10 (Hands On #3): bind via Request.Form (primitive types), not model
         [HttpPost]
-        public IActionResult NewWishIndex(Wishes wish)
+        public IActionResult NewWishIndex(int? ID)
         {
-            if (ModelState.IsValid)
+            var myWishes = new Wishes
             {
-                string json = JsonSerializer.Serialize(wish);
-                HttpContext.Session.SetString("myWishes", json);
-                return RedirectToAction("WishIndex");
-            }
+                ID = ID ?? 0,
+                wish1 = Request.Form["wish1"],
+                wish2 = Request.Form["wish2"],
+                wish3 = Request.Form["wish3"]
+            };
 
-            return View(wish);
+            string json = JsonSerializer.Serialize(myWishes);
+            HttpContext.Session.SetString("myWishes", json);
+
+            // you can pass the model or just redirect to load from session
+            return RedirectToAction("WishIndex");
+            // return View("WishIndex", myWishes);
         }
     }
 }
