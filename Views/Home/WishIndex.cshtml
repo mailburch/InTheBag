@@ -1,0 +1,23 @@
+﻿@model InTheBag.Models.Wishes
+@using System.Text.Json
+@{
+    ViewData["Title"] = "My Wishes";
+}
+
+<h2>My Wish List</h2>
+
+@if (Context.Session.GetString("myWishes") != null)
+{
+    string json = Context.Session.GetString("myWishes");
+    var wishes = JsonSerializer.Deserialize<InTheBag.Models.Wishes>(json);
+
+    <ul>
+        <li>@wishes.wish1</li>
+        <li>@wishes.wish2</li>
+        <li>@wishes.wish3</li>
+    </ul>
+}
+else
+{
+    <p>No wishes found.</p>
+}

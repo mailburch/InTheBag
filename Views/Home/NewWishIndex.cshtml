@@ -1,0 +1,22 @@
+﻿@model InTheBag.Models.Wishes
+@{
+    ViewData["Title"] = "Add New Wishes";
+}
+
+<h2>Enter Your 3 Wishes</h2>
+
+<form asp-action="NewWishIndex" method="post">
+    <div>
+        <label>Wish 1:</label>
+        <input asp-for="wish1" class="form-control" />
+    </div>
+    <div>
+        <label>Wish 2:</label>
+        <input asp-for="wish2" class="form-control" />
+    </div>
+    <div>
+        <label>Wish 3:</label>
+        <input asp-for="wish3" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Save Wishes</button>
+</form>
